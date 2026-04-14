@@ -7,6 +7,7 @@ import Layout from './layout/layout'
 import Timeline from './components/Timeline'
 import Homepage from './components/Homepage'
 import Stats from './components/Stats'
+import FriendDetail from './components/FriendDetail'  
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,12 @@ const router = createBrowserRouter([
       {
         path:"/stats",
         element:<Stats></Stats>
-      }
+      },
+     {
+    path: "friend/:id",
+    element: <FriendDetail />
+} 
+     
     ],
     errorElement: <h2>404 NOT AVAILABLE</h2>
   },
