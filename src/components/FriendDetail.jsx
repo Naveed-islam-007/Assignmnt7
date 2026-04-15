@@ -4,7 +4,7 @@ import { HashLoader } from 'react-spinners';
 import { useContext } from 'react';
 import { FriendContext } from './Context/Context';
 
-// ✅ Import icons from assets
+
 import callIcon from '../assets/call.png';
 import textIcon from '../assets/text.png';
 import videoIcon from '../assets/video.png';

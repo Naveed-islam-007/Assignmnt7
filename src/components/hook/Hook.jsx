@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const Hook = () => {
     const [apps, setApps] = useState([]);
-    const [loading, setLoading] = useState(true);  // ← start as true
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
         const fetchData = async () => {
