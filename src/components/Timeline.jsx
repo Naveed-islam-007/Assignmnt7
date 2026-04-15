@@ -1,7 +1,19 @@
 import { useContext, useState } from 'react';
 import { FriendContext } from './Context/Context';
 
-const iconMap = { Call: '📞', Text: '💬', Video: '🎥', Meetup: '🤝' };
+// ✅ Import icons
+import callIcon from '../assets/call.png';
+import textIcon from '../assets/text.png';
+import videoIcon from '../assets/video.png';
+
+
+// ✅ Map type → icon
+const iconMap = {
+    Call: callIcon,
+    Text: textIcon,
+    Video: videoIcon,
+  
+};
 
 const Timeline = () => {
     const { FriendChosen } = useContext(FriendContext);
@@ -31,13 +43,25 @@ const Timeline = () => {
             ) : (
                 <div className="flex flex-col gap-3">
                     {filtered.map((entry) => (
-                        <div key={entry.id} className="flex items-center gap-4 border border-dashed rounded-xl p-4">
-                            <span className="text-2xl">{iconMap[entry.type]}</span>
+                        <div
+                            key={entry.id}
+                            className="flex items-center gap-4 border border-dashed rounded-xl p-4"
+                        >
+                            {/* ✅ Icon */}
+                            <img
+                                src={iconMap[entry.type]}
+                                alt={entry.type}
+                                className="w-8 h-8"
+                            />
+
+                            {/* ✅ Text */}
                             <div>
                                 <p className="text-sm">
                                     <strong>{entry.type}</strong> with {entry.friendName}
                                 </p>
-                                <p className="text-xs text-gray-400">{entry.date}</p>
+                                <p className="text-xs text-gray-400">
+                                    {entry.date} • {entry.time}
+                                </p>
                             </div>
                         </div>
                     ))}

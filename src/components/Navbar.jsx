@@ -2,29 +2,65 @@ import React from 'react';
 import { CiClock2 } from 'react-icons/ci';
 import { IoHomeOutline } from 'react-icons/io5';
 import { TfiStatsUp } from 'react-icons/tfi';
-import { Link, NavLink } from 'react-router';
+import { NavLink } from 'react-router';
 
 const Navbar = () => {
     return (
- <div>
-<div class="navbar bg-base-100 shadow-sm">
-  <div class="flex-1">
-    <a class="btn btn-ghost text-xl">Keen<span className='text-green-800'>Keeper</span></a>
-  </div>
-  <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
-      <li>
-       <NavLink to={'/'}><IoHomeOutline /> Home</NavLink>
-      </li>
-      <li>
-       <NavLink to={'/timeline'}><CiClock2 /> Timeline</NavLink>
-      </li>
-      <li>
-       <NavLink to={'/stats'}> <TfiStatsUp /> Stats</NavLink>
-      </li>
-    </ul>
-  </div>
-</div>
+        <div>
+            <div className="navbar bg-base-100 shadow-sm">
+                
+                <div className="flex-1">
+                    <a className="btn btn-ghost text-xl">
+                        Keen<span className='text-green-800'>Keeper</span>
+                    </a>
+                </div>
+
+                <div className="flex-none">
+                    <ul className="menu menu-horizontal px-1 gap-2">
+
+                        <li>
+                            <NavLink
+                                to="/"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1"
+                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg"
+                                }
+                            >
+                                <IoHomeOutline /> Home
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink
+                                to="/timeline"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1"
+                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg"
+                                }
+                            >
+                                <CiClock2 /> Timeline
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink
+                                to="/stats"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1"
+                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg"
+                                }
+                            >
+                                <TfiStatsUp /> Stats
+                            </NavLink>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
         </div>
     );
 };
