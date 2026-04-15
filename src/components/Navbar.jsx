@@ -17,10 +17,10 @@ const Navbar = () => {
        <NavLink to={'/'}><IoHomeOutline /> Home</NavLink>
       </li>
       <li>
-       <NavLink to={'/Timeline'}><CiClock2 /> Timeline</NavLink>
+       <NavLink to={'/timeline'}><CiClock2 /> Timeline</NavLink>
       </li>
       <li>
-       <NavLink to={'/Stats'}> <TfiStatsUp /> Stats</NavLink>
+       <NavLink to={'/stats'}> <TfiStatsUp /> Stats</NavLink>
       </li>
     </ul>
   </div>
