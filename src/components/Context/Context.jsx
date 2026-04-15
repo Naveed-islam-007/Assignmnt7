@@ -1,20 +1,21 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
 export const FriendContext = createContext();
 
-const Context = ({ children }) => {
+export const FriendProvider = ({ children }) => {
     const [FriendChosen, setFriendChosen] = useState([]);
 
-    const data = {
-        FriendChosen,
-        setFriendChosen
+    const removeEntry = (id) => {
+        setFriendChosen((prev) =>
+            prev.filter((item) => item.id !== id)
+        );
     };
 
     return (
-        <FriendContext.Provider value={data}>
+        <FriendContext.Provider
+            value={{ FriendChosen, setFriendChosen, removeEntry }}
+        >
             {children}
         </FriendContext.Provider>
     );
 };
-
-export default Context;
