@@ -28,7 +28,7 @@ const FriendDetail = () => {
             time: new Date().toLocaleTimeString(),
         };
 
-        setFriendChosen((prev) => [...prev, newEntry]);
+       setFriendChosen([...FriendChosen, newEntry]);
     };
 
     return (
@@ -97,14 +97,13 @@ const FriendDetail = () => {
                             { label: '💬 Text',  type: 'Text'  },
                             { label: '🎥 Video', type: 'Video' },
                         ].map(({ label, type }) => (
-                            <Link
-                                key={type}
-                                to="/timeline"
-                                onClick={() => handleCheckIn(type)}
-                                className="border rounded-xl py-4 flex flex-col items-center gap-1 hover:bg-gray-50 text-sm"
-                            >
-                                {label}
-                            </Link>
+                          <div
+                             key={type}
+                              onClick={() => handleCheckIn(type)}
+                                 className="border rounded-xl py-4 flex flex-col items-center gap-1 hover:bg-gray-50 text-sm cursor-pointer"
+                               >
+                                  {label}
+                            </div>
                         ))}
                     </div>
                 </div>
