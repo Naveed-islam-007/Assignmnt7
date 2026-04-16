@@ -23,8 +23,8 @@ const Navbar = () => {
                                 to="/"
                                 className={({ isActive }) =>
                                     isActive
-                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1"
-                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg"
+                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1 text-xl font-bold"
+                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg text-xl font-bold"
                                 }
                             >
                                 <IoHomeOutline /> Home
@@ -36,8 +36,8 @@ const Navbar = () => {
                                 to="/timeline"
                                 className={({ isActive }) =>
                                     isActive
-                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1"
-                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg"
+                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1 text-xl font-bold"
+                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg text-xl font-bold"
                                 }
                             >
                                 <CiClock2 /> Timeline
@@ -49,8 +49,8 @@ const Navbar = () => {
                                 to="/stats"
                                 className={({ isActive }) =>
                                     isActive
-                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1"
-                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg"
+                                        ? "bg-green-800 text-white px-3 py-2 rounded-lg flex items-center gap-1 text-xl font-bold"
+                                        : "px-3 py-2 flex items-center gap-1 hover:bg-gray-100 rounded-lg text-xl font-bold"
                                 }
                             >
                                 <TfiStatsUp /> Stats

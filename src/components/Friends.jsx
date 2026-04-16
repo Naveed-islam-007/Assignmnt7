@@ -4,7 +4,7 @@ import { HashLoader } from 'react-spinners';
 import { Link } from 'react-router';
 
 const Friends = () => {
-    const { apps, loading } = Hook();
+    const {apps,loading} = Hook();
 
     return loading ? (
         <div className="flex justify-center items-center">

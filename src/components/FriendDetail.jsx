@@ -4,136 +4,142 @@ import { HashLoader } from 'react-spinners';
 import { useContext } from 'react';
 import { FriendContext } from './Context/Context';
 
-
 import callIcon from '../assets/call.png';
 import textIcon from '../assets/text.png';
 import videoIcon from '../assets/video.png';
 
 const FriendDetail = () => {
-    const { id } = useParams();
-    const { apps, loading } = Hook();
-    const { FriendChosen, setFriendChosen } = useContext(FriendContext);
 
-    if (loading) return (
-        <div className="flex justify-center items-center min-h-screen">
-            <HashLoader color="#ad46ff" />
-        </div>
-    );
+    const params = useParams();
+    const id = params.id;
 
-    const friend = apps.find((f) => f.id === Number(id));
+    const data = Hook();
+    const apps = data.apps;
+    const loading = data.loading;
+
+    const contextData = useContext(FriendContext);
+    const FriendChosen = contextData.FriendChosen;
+    const setFriendChosen = contextData.setFriendChosen;
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <HashLoader color="#ad46ff" />
+            </div>
+        );
+    }
+
+    const friend = apps.find((item) => {
+        return item.id == id;
+    });
 
     const handleCheckIn = (type) => {
+
         const newEntry = {
             id: Date.now(),
             friendId: friend.id,
             friendName: friend.name,
             friendPicture: friend.picture,
-            type,
+            type: type,
             date: new Date().toLocaleDateString(),
-            time: new Date().toLocaleTimeString(),
+            time: new Date().toLocaleTimeString()
         };
 
+        
         setFriendChosen([...FriendChosen, newEntry]);
     };
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 rounded-xl p-4 w-3/4 container mx-auto min-h-[500px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 w-3/4 mx-auto min-h-[600px] pt-20">
 
-            {/* LEFT PANEL */}
             <div className="flex flex-col gap-3">
-                <div className="flex flex-col items-center text-center shadow-md rounded-xl p-4 gap-2">
+
+                <div className="shadow-md p-4 text-center">
                     <img
                         src={friend.picture}
-                        alt={friend.name}
-                        className="w-20 h-20 rounded-full object-cover"
+                        alt=""
+                        className="w-20 h-20 rounded-full mx-auto"
                     />
-                    <h2 className="font-bold text-lg">{friend.name}</h2>
 
-                    <span className={`badge ${
-                        friend.status === 'on-track' ? 'badge-success' :
-                        friend.status === 'almost due' ? 'badge-warning' :
-                        'badge-error'
-                    }`}>
-                        {friend.status}
-                    </span>
+                    <h2 className="font-bold mt-2">{friend.name}</h2>
 
-                    <div className="flex gap-2 flex-wrap justify-center">
+                    <p>{friend.status}</p>
+
+                    <div>
                         {friend.tags.map((tag) => (
-                            <span key={tag} className="badge badge-soft badge-accent">
+                            <span key={tag} className="mr-2 text-sm">
                                 {tag}
                             </span>
                         ))}
                     </div>
 
-                    <p className="text-sm italic text-gray-500">"{friend.bio}"</p>
+                    <p className="text-sm mt-2">{friend.bio}</p>
                 </div>
 
-                <div className="flex flex-col shadow-md rounded-xl divide-y">
-                    <button className="py-3 flex items-center justify-center gap-2 text-sm hover:bg-gray-50">
-                        🔔 Snooze 2 Weeks
-                    </button>
-                    <button className="py-3 flex items-center justify-center gap-2 text-sm hover:bg-gray-50">
-                        📁 Archive
-                    </button>
-                    <button className="py-3 flex items-center justify-center gap-2 text-sm text-red-500 hover:bg-gray-50">
-                        🗑 Delete
-                    </button>
+                <div className="shadow-md">
+                    <button className="w-full py-2 btn">Snooze</button>
+                    <button className="w-full py-2 btn">Archive</button>
+                    <button className="w-full py-2 text-red-500 btn">Delete</button>
                 </div>
+
             </div>
 
-            {/* RIGHT PANEL */}
+           
             <div className="flex flex-col gap-4">
 
-                {/* STATS */}
-                <div className="grid grid-cols-3 shadow-md rounded-xl divide-x">
-                    <div className="flex flex-col items-center py-5">
-                        <span className="text-3xl font-bold">{friend.days_since_contact}</span>
-                        <span className="text-sm text-gray-500">Days Since Contact</span>
+                <div className="grid grid-cols-3 gap-5  shadow-md p-4">
+                    <div className='btn p-10 flex flex-col'>
+                        <h3>{friend.days_since_contact}</h3>
+                        <p>Days</p>
                     </div>
-                    <div className="flex flex-col items-center py-5">
-                        <span className="text-3xl font-bold">{friend.goal}</span>
-                        <span className="text-sm text-gray-500">Goal (Days)</span>
+
+                    <div className='btn p-10 flex flex-col'>
+                        <h3>{friend.goal}</h3>
+                        <p>Goal</p>
                     </div>
-                    <div className="flex flex-col items-center py-5">
-                        <span className="text-3xl font-bold text-teal-500">{friend.next_due_date}</span>
-                        <span className="text-sm text-gray-500">Next Due</span>
+
+                    <div className='btn p-10 flex flex-col'>
+                        <h3>{friend.next_due_date}</h3>
+                        <p>Next</p>
                     </div>
                 </div>
 
-                {/* GOAL */}
-                <div className="shadow-md rounded-xl p-4">
-                    <div className="flex justify-between items-center">
-                        <h3 className="font-bold">Relationship Goal</h3>
-                        <button className="btn btn-sm">Edit</button>
+                <div className="shadow-md p-4 flex justify-between items-center">
+                    <div>
+                        <h3 className='text-2xl font-bold'>Goal</h3>
+                    <p>Connect every {friend.goal} days</p>
                     </div>
-                    <p className="mt-2 text-sm">
-                        Connect every <strong>{friend.goal} days</strong>
-                    </p>
+
+                    <div>
+                        <button className='btn'>Edit</button>
+                    </div>
                 </div>
 
-                {/* QUICK CHECK-IN */}
-                <div className="shadow-md rounded-xl p-4">
-                    <h3 className="font-bold mb-3">Quick Check-In</h3>
+                <div className="shadow-md p-4">
+                    <h3>Quick Check</h3>
 
-                    <div className="grid grid-cols-3 gap-3">
-                        {[
-                            { label: 'Call', type: 'Call', icon: callIcon },
-                            { label: 'Text', type: 'Text', icon: textIcon },
-                            { label: 'Video', type: 'Video', icon: videoIcon },
-                        ].map(({ label, type, icon }) => (
-                            <div
-                                key={type}
-                                onClick={() => handleCheckIn(type)}
-                                className="border rounded-xl py-4 flex flex-col items-center gap-1 hover:bg-gray-50 text-sm cursor-pointer"
-                            >
-                                <img src={icon} alt={type} className="w-8 h-8" />
-                                <span>{label}</span>
-                            </div>
-                        ))}
+                    <div className="grid grid-cols-3 gap-2">
+
+                        <div onClick={() => handleCheckIn('Call')} className="text-center cursor-pointer btn flex flex-col p-10">
+                            <img src={callIcon} className="w-8 mx-auto" />
+                            <p>Call</p>
+                        </div>
+
+                        <div onClick={() => handleCheckIn('Text')} className="text-center cursor-pointer btn flex flex-col p-10">
+                            <img src={textIcon} className="w-8 mx-auto" />
+                            <p>Text</p>
+                        </div>
+
+                        <div onClick={() => handleCheckIn('Video')} className="text-center cursor-pointer btn flex flex-col p-10">
+                            <img src={videoIcon} className="w-8 mx-auto" />
+                            <p>Video</p>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
+
         </div>
     );
 };

@@ -9,6 +9,7 @@ import Homepage from './components/Homepage'
 import Stats from './components/Stats'
 import FriendDetail from './components/FriendDetail' 
 import  { FriendProvider } from './components/Context/Context'  
+import NotFound from './components/NotFound'
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
 } 
      
     ],
-    errorElement: <h2>404 NOT AVAILABLE</h2>
+    errorElement: <NotFound></NotFound>
+                  
   },
 ])
 

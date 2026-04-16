@@ -5,16 +5,14 @@ export const FriendContext = createContext();
 export const FriendProvider = ({ children }) => {
     const [FriendChosen, setFriendChosen] = useState([]);
 
-    const removeEntry = (id) => {
-        setFriendChosen((prev) =>
-            prev.filter((item) => item.id !== id)
-        );
-    };
+   const removeEntry = (id) => {
+    const updatedList = FriendChosen.filter((item) => item.id !== id);
+    setFriendChosen(updatedList);
+};
+
 
     return (
-        <FriendContext.Provider
-            value={{ FriendChosen, setFriendChosen, removeEntry }}
-        >
+        <FriendContext.Provider  value={{ FriendChosen, setFriendChosen, removeEntry }}>
             {children}
         </FriendContext.Provider>
     );
